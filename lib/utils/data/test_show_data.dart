@@ -3,6 +3,7 @@ import 'package:chronoreel/types/show_data.dart';
 
 final List<ShowData> shows = [
   ShowData(
+    id: "",
     title: "Pigpen",
     year: 2019,
     type: 'Anime',
@@ -11,6 +12,7 @@ final List<ShowData> shows = [
     starring: ['Jin-Hyeok Song', 'Minu'],
   ),
   ShowData(
+    id: "",
     title: 'NIER: AUTOMATA',
     year: 2023,
     type: 'Anime',
@@ -22,6 +24,7 @@ final List<ShowData> shows = [
     starring: ['YUI ISHIKAWA', 'AYAKA SUWA', 'NATSUKI HANAE'],
   ),
   ShowData(
+    id: "",
     title: 'Perfect Blue',
     year: 1997,
     type: 'Anime Movie',

@@ -1,4 +1,5 @@
 class ShowData {
+  final String id;
   final String title;
   final int year;
   final String type;
@@ -10,6 +11,7 @@ class ShowData {
   final Map<String, dynamic> _extraData = {}; // Stores additional attributes
 
   ShowData({
+    required this.id,
     required this.title,
     required this.year,
     required this.type,

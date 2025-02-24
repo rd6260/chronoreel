@@ -39,7 +39,7 @@ class ShowCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            show.title,
+                            show.title.toUpperCase(),
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

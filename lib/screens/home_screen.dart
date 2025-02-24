@@ -1,3 +1,4 @@
+import 'package:chronoreel/screens/search_screen.dart';
 import 'package:chronoreel/utils/data/test_show_data.dart';
 import 'package:chronoreel/widgets/show_card.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [Icon(Icons.more_vert)],
         elevation: 0,
       ),
       body: GridView.builder(
@@ -37,7 +39,12 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SearchScreen()),
+          );
+        },
       ),
     );
   }
