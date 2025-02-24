@@ -1,7 +1,8 @@
+import 'package:chronoreel/types/show_data.dart';
 import 'package:flutter/material.dart';
 
 class ShowCard extends StatelessWidget {
-  final Map<String, dynamic> show;
+  final ShowData show;
 
   const ShowCard({super.key, required this.show});
 
@@ -19,7 +20,7 @@ class ShowCard extends StatelessWidget {
           AspectRatio(
             aspectRatio: 4 / 5, // Square image
             child: Image.network(
-              show['image'],
+              show.image ?? 'https://cdn.myanimelist.net/images/manga/2/260276.jpg',
               fit: BoxFit.cover,
               width: double.infinity,
             ),
@@ -38,7 +39,7 @@ class ShowCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            show['title'],
+                            show.title,
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -48,7 +49,7 @@ class ShowCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          show['year'],
+                          show.year.toString(),
                           style: const TextStyle(
                             fontSize: 14,
                             color: Colors.black54,
@@ -72,7 +73,7 @@ class ShowCard extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: show['genre'],
+                            text: show.genre,
                             style: const TextStyle(
                               fontSize: 11,
                               color: Colors.black87,
@@ -84,7 +85,7 @@ class ShowCard extends StatelessWidget {
                     const SizedBox(height: 4),
 
                     // Credits (Author/Producer/Director)
-                    if (show['author'] != null)
+                    if (show.director != null)
                       RichText(
                         text: TextSpan(
                           children: [
@@ -97,7 +98,7 @@ class ShowCard extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: show['author'],
+                              text: show.director,
                               style: const TextStyle(
                                 fontSize: 11,
                                 color: Colors.black87,
@@ -106,7 +107,7 @@ class ShowCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                    if (show['producer'] != null)
+                    if (show.studio != null)
                       RichText(
                         text: TextSpan(
                           children: [
@@ -119,7 +120,7 @@ class ShowCard extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: show['producer'],
+                              text: show.studio,
                               style: const TextStyle(
                                 fontSize: 11,
                                 color: Colors.black87,
@@ -128,7 +129,7 @@ class ShowCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                    if (show['director'] != null)
+                    if (show.director != null)
                       RichText(
                         text: TextSpan(
                           children: [
@@ -141,7 +142,7 @@ class ShowCard extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: show['director'],
+                              text: show.director,
                               style: const TextStyle(
                                 fontSize: 11,
                                 color: Colors.black87,
@@ -150,7 +151,7 @@ class ShowCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                    if (show['studio'] != null)
+                    if (show.studio != null)
                       RichText(
                         text: TextSpan(
                           children: [
@@ -163,7 +164,7 @@ class ShowCard extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: show['studio'],
+                              text: show.studio,
                               style: const TextStyle(
                                 fontSize: 11,
                                 color: Colors.black87,
@@ -187,7 +188,7 @@ class ShowCard extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: show['starring'],
+                            text: show.starring?.join(" "),
                             style: const TextStyle(
                               fontSize: 11,
                               color: Colors.black87,
