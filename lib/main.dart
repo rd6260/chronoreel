@@ -12,8 +12,8 @@ class ChronoReelApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "ChronoReel",
+      debugShowCheckedModeBanner: false,
       home: HomeScreen(),
     );
   }
 }
-
