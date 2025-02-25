@@ -84,6 +84,8 @@ class _SearchScreenState extends State<SearchScreen> {
       final data = json.decode(response.body);
       setState(() {
         searchResults = data['data']['Page']['media'];
+        // print("=====================================");
+        // print(data['data']['Page']['media'][0]);
         isLoading = false;
       });
     } else {
@@ -115,7 +117,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 isLoading
                     ? Center(child: CircularProgressIndicator())
                     : searchResults.isEmpty
-                    ? Center(child: Text('No results found'))
+                    ? Center(child: Text('Search something'))
                     : ListView.builder(
                       itemCount: searchResults.length,
                       itemBuilder: (context, index) {
