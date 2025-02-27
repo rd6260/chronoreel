@@ -1,3 +1,4 @@
+import 'package:chronoreel/screens/add_item_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -140,7 +141,13 @@ class AnimeListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap:
+          () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddItemScreen(anilistId: anime['id'].toString()),
+            ),
+          ),
       child: Card(
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Padding(

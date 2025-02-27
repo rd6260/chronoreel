@@ -18,10 +18,10 @@ class _AddItemScreenState extends State<AddItemScreen> {
   @override
   void initState() {
     super.initState();
-    fetchAnimeData();
+    fetchMediaData();
   }
 
-  Future<void> fetchAnimeData() async {
+  Future<void> fetchMediaData() async {
     const String url = 'https://graphql.anilist.co';
     final query = '''
       query (\$id: Int) {
@@ -65,9 +65,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
         },
         body: jsonEncode({
           'query': query,
-          'variables': {
-            'id': int.parse(widget.anilistId),
-          },
+          'variables': {'id': int.parse(widget.anilistId)},
         }),
       );
 
@@ -131,11 +129,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     return Scaffold(
@@ -149,9 +143,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 animeData?['bannerImage'] ?? '',
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.grey[300],
-                  );
+                  return Container(color: Colors.grey[300]);
                 },
               ),
             ),
@@ -200,25 +192,29 @@ class _AddItemScreenState extends State<AddItemScreen> {
                               const SizedBox(height: 4),
                               Text(
                                 animeData!['title']['english'],
-                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                      color: Colors.grey[600],
-                                    ),
+                                style: Theme.of(context).textTheme.titleMedium
+                                    ?.copyWith(color: Colors.grey[600]),
                               ),
                             ],
                             const SizedBox(height: 8),
                             Wrap(
                               spacing: 4,
                               runSpacing: 4,
-                              children: (animeData?['genres'] as List<dynamic>?)
-                                      ?.map((genre) => Chip(
-                                            label: Text(
-                                              genre.toString(),
-                                              style: const TextStyle(fontSize: 12),
+                              children:
+                                  (animeData?['genres'] as List<dynamic>?)
+                                      ?.map(
+                                        (genre) => Chip(
+                                          label: Text(
+                                            genre.toString(),
+                                            style: const TextStyle(
+                                              fontSize: 12,
                                             ),
-                                            materialTapTargetSize:
-                                                MaterialTapTargetSize.shrinkWrap,
-                                            padding: const EdgeInsets.all(4),
-                                          ))
+                                          ),
+                                          materialTapTargetSize:
+                                              MaterialTapTargetSize.shrinkWrap,
+                                          padding: const EdgeInsets.all(4),
+                                        ),
+                                      )
                                       .toList() ??
                                   [],
                             ),
@@ -229,7 +225,9 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   ),
                   const SizedBox(height: 16),
                   // Voice Actors
-                  if ((animeData?['characters']['edges'] as List<dynamic>?)?.isNotEmpty ?? false) ...[
+                  if ((animeData?['characters']['edges'] as List<dynamic>?)
+                          ?.isNotEmpty ??
+                      false) ...[
                     Text(
                       'Starring',
                       style: Theme.of(context).textTheme.titleMedium,
@@ -237,17 +235,19 @@ class _AddItemScreenState extends State<AddItemScreen> {
                     const SizedBox(height: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: (animeData?['characters']['edges'] as List<dynamic>?)
+                      children:
+                          (animeData?['characters']['edges'] as List<dynamic>?)
                               ?.map((edge) {
-                            final character = edge['node']['name']['full'];
-                            final voiceActor = edge['voiceActors']?[0]?['name']
-                                    ?['full'] ??
-                                'N/A';
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 4),
-                              child: Text('$character (CV: $voiceActor)'),
-                            );
-                          }).toList() ??
+                                final character = edge['node']['name']['full'];
+                                final voiceActor =
+                                    edge['voiceActors']?[0]?['name']?['full'] ??
+                                    'N/A';
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 4),
+                                  child: Text('$character (CV: $voiceActor)'),
+                                );
+                              })
+                              .toList() ??
                           [],
                     ),
                     const SizedBox(height: 16),
