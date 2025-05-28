@@ -137,7 +137,7 @@ class _SearchScreenState extends State<SearchScreen> {
               item['studios']['nodes'].isNotEmpty) {
             mediaWithStudio['studio'] = item['studios']['nodes'][0]['name'];
           }
-          
+
           return Media.fromJson(mediaWithStudio);
         }).toList();
         isLoading = false;
